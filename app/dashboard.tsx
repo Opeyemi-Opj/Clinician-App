@@ -51,8 +51,7 @@ const Dashboard = () => {
 
         <Pressable
           style={styles.logoutButton}
-          onPress={handleLogout}
-        >
+          onPress={handleLogout}>
           <Text style={styles.logoutText}>
             Logout
           </Text>
