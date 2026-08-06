@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { SafeAreaView, View,Text, TextInput, Pressable, StyleSheet, Alert,} from "react-native";
+import {SafeAreaView, View, Text, TextInput, Pressable, Alert,} from "react-native";
+
 import { router } from "expo-router";
+import appStyle from "../styles/appStyles";
 
 const Index = () => {
   const [email, setEmail] = useState("");
@@ -26,195 +28,91 @@ const Index = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
+    <SafeAreaView style={appStyle.indexContainer}>
+  <View style={appStyle.indexContent}>
 
-        <Text style={styles.logo}>
-          Clinician App
+    <Text style={appStyle.indexLogo}>
+      Clinician App
+    </Text>
+
+    <Text style={appStyle.indexTitle}>
+      Welcome Back
+    </Text>
+
+    <Text style={appStyle.indexSubtitle}>
+      Sign in to continue to your clinician account.
+    </Text>
+
+    <View style={appStyle.indexInputContainer}>
+      <Text style={appStyle.indexLabel}>
+        Email
+      </Text>
+
+      <TextInput
+        style={appStyle.indexInput}
+        placeholder="Enter your email"
+        placeholderTextColor="#94A3B8"
+        keyboardType="email-address"
+        autoCapitalize="none"
+        autoCorrect={false}
+        value={email}
+        onChangeText={setEmail}
+      />
+    </View>
+
+    <View style={appStyle.indexInputContainer}>
+      <Text style={appStyle.indexLabel}>
+        Password
+      </Text>
+
+      <TextInput
+        style={appStyle.indexInput}
+        placeholder="Enter your password"
+        placeholderTextColor="#94A3B8"
+        secureTextEntry
+        value={password}
+        onChangeText={setPassword}
+      />
+    </View>
+
+    <Pressable
+      style={appStyle.indexForgotButton}
+      onPress={() => {
+        Alert.alert(
+          "Forgot Password",
+          "Password recovery will be implemented later."
+        );
+      }}
+    >
+      <Text style={appStyle.indexForgotText}>
+        Forgot Password?
+      </Text>
+    </Pressable>
+
+    <Pressable
+      style={appStyle.indexPrimaryButton}
+      onPress={handleSignIn}
+    >
+      <Text style={appStyle.indexPrimaryButtonText}>
+        Sign In
+      </Text>
+    </Pressable>
+
+    <View style={appStyle.indexSignupContainer}>
+      <Text style={appStyle.indexSignupText}>
+        Don't have an account?
+      </Text>
+
+      <Pressable onPress={goToSignUp}>
+        <Text style={appStyle.indexSignupLink}>
+          {" "}Sign Up
         </Text>
+      </Pressable>
+    </View>
 
-        <Text style={styles.title}>
-          Welcome Back
-        </Text>
-
-        <Text style={styles.subtitle}>
-          Sign in to continue to your clinician account.
-        </Text>
-
-        {/* Email */}
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>
-            Email
-          </Text>
-
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your email"
-            placeholderTextColor="#94A3B8"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            autoCorrect={false}
-            value={email}
-            onChangeText={setEmail}
-          />
-        </View>
-
-        {/* Password */}
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>
-            Password
-          </Text>
-
-          <TextInput
-            style={styles.input}
-            placeholder="Enter your password"
-            placeholderTextColor="#94A3B8"
-            secureTextEntry
-            value={password}
-            onChangeText={setPassword}
-          />
-        </View>
-
-        {/* Forgot Password */}
-        <Pressable
-          style={styles.forgotButton}
-          onPress={() => {
-            Alert.alert(
-              "Forgot Password",
-              "Password recovery will be implemented later."
-            );
-          }}
-        >
-          <Text style={styles.forgotText}>
-            Forgot Password?
-          </Text>
-        </Pressable>
-
-        {/* Sign In Button */}
-        <Pressable
-          style={styles.primaryButton}
-          onPress={handleSignIn}
-        >
-          <Text style={styles.primaryButtonText}>
-            Sign In
-          </Text>
-        </Pressable>
-
-        {/* Sign Up */}
-        <View style={styles.signupContainer}>
-          <Text style={styles.signupText}>
-            Don't have an account?
-          </Text>
-
-          <Pressable onPress={goToSignUp}>
-            <Text style={styles.signupLink}>
-              {" "}Sign Up
-            </Text>
-          </Pressable>
-        </View>
-
-      </View>
-    </SafeAreaView>
+  </View>
+</SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#F8FAFC",
-  },
-
-  content: {
-    flex: 1,
-    justifyContent: "center",
-    paddingHorizontal: 24,
-  },
-
-  logo: {
-    fontSize: 28,
-    fontWeight: "700",
-    textAlign: "center",
-    marginBottom: 40,
-    color: "#0F172A",
-  },
-
-  title: {
-    fontSize: 30,
-    fontWeight: "700",
-    color: "#0F172A",
-    marginBottom: 8,
-  },
-
-  subtitle: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: "#64748B",
-    marginBottom: 30,
-  },
-
-  inputContainer: {
-    marginBottom: 18,
-  },
-
-  label: {
-    fontSize: 15,
-    fontWeight: "600",
-    color: "#0F172A",
-    marginBottom: 8,
-  },
-
-  input: {
-    height: 52,
-    borderWidth: 1,
-    borderColor: "#CBD5E1",
-    borderRadius: 10,
-    paddingHorizontal: 16,
-    fontSize: 16,
-    color: "#0F172A",
-    backgroundColor: "#FFFFFF",
-  },
-
-  forgotButton: {
-    alignSelf: "flex-end",
-    marginBottom: 24,
-  },
-
-  forgotText: {
-    fontSize: 14,
-    fontWeight: "600",
-    color: "#2563EB",
-  },
-
-  primaryButton: {
-    height: 52,
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#2563EB",
-  },
-
-  primaryButtonText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "700",
-  },
-
-  signupContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginTop: 25,
-  },
-
-  signupText: {
-    fontSize: 15,
-    color: "#64748B",
-  },
-
-  signupLink: {
-    fontSize: 15,
-    fontWeight: "700",
-    color: "#2563EB",
-  },
-});
 
 export default Index;
